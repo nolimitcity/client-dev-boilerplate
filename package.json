@@ -23,7 +23,6 @@
     "tsify": "3.0.1",
     "typescript": "^2.1.1",
     "watchify": "^3.7.0",
-    "@types/greensock": "^1.15.32",
     "@types/pixi-spine": "^1.4.2"
   }
 }
