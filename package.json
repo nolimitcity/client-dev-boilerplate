@@ -1,0 +1,29 @@
+{
+  "name": "client-dev-boilerplate",
+  "version": "1.0.1",
+  "description": "",
+  "main": "src/main.ts",
+  "scripts": {
+    "build": "browserify -d src/main.ts -p [ tsify --noImplicitAny ] > bin/bundle.js",
+    "watch": "watchify -d src/main.ts -p [ tsify --noImplicitAny ] -o bin/bundle.js -v"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "7.0.5",
+    "@types/pixi.js": "4.4.2",
+    "@types/sat": "^0.0.28",
+    "@types/greensock": "^1.15.32",
+    "sat": "0.6.0",
+    "browserify": "^13.1.1",
+    "gsap": "1.19.1",
+    "pixi-particles": "2.0.0",
+    "pixi-spine": "^1.4.2",
+    "pixi.js": "4.4.2",
+    "tsify": "3.0.1",
+    "typescript": "^2.1.1",
+    "watchify": "^3.7.0",
+    "@types/greensock": "^1.15.32",
+    "@types/pixi-spine": "^1.4.2"
+  }
+}

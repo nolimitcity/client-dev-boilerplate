@@ -1,0 +1,8 @@
+node_modules/
+.idea
+*.iml
+src/**/*.js
+src/**/*.js.map
+*.tar.gz
+*.log
+bin/bundle.js
