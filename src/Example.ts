@@ -23,7 +23,7 @@ class Example extends Application {
         sprite.anchor.set(0.5, 0.5);
         sprite.position.set(this._stageWidth * 0.5, this._stageHeight * 0.5);
         sprite.tint = 0x0000FF;
-        this._backgroundLayer.addChild(sprite);
+        this._foregroundLayer.addChild(sprite);
     }
 }
 export {Example};
