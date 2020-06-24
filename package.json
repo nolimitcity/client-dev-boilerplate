@@ -1,28 +1,27 @@
 {
   "name": "client-dev-boilerplate",
-  "version": "1.0.1",
-  "description": "",
-  "main": "src/main.ts",
+  "version": "2.0.0",
+  "description": "Boiler plate typescript application with PIXI and GSAP",
+  "main": "target/bundle/bundle.js",
   "scripts": {
-    "build": "browserify -d src/main.ts -p [ tsify --noImplicitAny ] > bin/bundle.js",
-    "watch": "watchify -d src/main.ts -p [ tsify --noImplicitAny ] -o bin/bundle.js -v"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run watch",
+    "build": "browserify src/main.ts -d -p [ tsify --noImplicitAny ] > target/bundle/bundle.js",
+    "watch": "watchify src/main.ts -d -p [ tsify --noImplicitAny ] -o target/bundle/bundle.js -v"
   },
-  "author": "",
+  "author": "Jonas Wålekvist",
   "license": "ISC",
+  "dependencies": {
+    "gsap": "^3.3.4",
+    "pixi.js": "^5.3.0"
+  },
+  "files": [
+    "target"
+  ],
   "devDependencies": {
-    "@types/node": "7.0.5",
-    "@types/pixi.js": "4.4.2",
-    "@types/sat": "^0.0.28",
-    "@types/greensock": "^1.15.32",
-    "sat": "0.6.0",
-    "browserify": "^13.1.1",
-    "gsap": "1.19.1",
-    "pixi-particles": "2.0.0",
-    "pixi-spine": "^1.4.2",
-    "pixi.js": "4.4.2",
-    "tsify": "3.0.1",
-    "typescript": "^2.1.1",
-    "watchify": "^3.7.0",
-    "@types/pixi-spine": "^1.4.2"
+    "browserify": "^16.5.1",
+    "tsify": "^4.0.2",
+    "typescript": "^3.9.5",
+    "watchify": "^3.11.1"
   }
 }

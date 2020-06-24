@@ -1,40 +1,50 @@
-import {Application, IAssetsDictionary} from "./Application";
 /**
- * Class description
- *
- * created on 2017-04-19
- * @author jowa
+ * Created by jonas on 2020-06-24.
  */
+
+import GSAP from "gsap";
+import {Application} from "./Application";
+
 export class Example extends Application {
 
-    constructor(){
-        let assets:IAssetsDictionary = {
-            "star": "example/star.png"
-        };
+    constructor() {
+        super();
+    }
 
-        super(assets, "../media/");
+    protected init(){
+        this.loader.add("../media/example/star.png");
+        this.loader.add("../media/animations/bw-intro.json");
+        this.loader.load((loader: PIXI.Loader, resources: Partial<Record<string, PIXI.LoaderResource>>)=>this.onLoadComplete(loader, resources));
     }
 
 
-    protected initAnimations():void{
-        super.initAnimations();
+    private onLoadComplete(loader:PIXI.Loader, resources:Partial<Record<string, PIXI.LoaderResource>>) {
 
-        let textStyle:PIXI.TextStyleOptions = {
-            "fontFamily": "Futura LT",
-            "fontSize": "40px",
-            "fontWeight": "400",
-            "fill": "#00FF00"
-        };
+        const sprite = new PIXI.Sprite(resources["../media/example/star.png"]!.texture);
 
-        let text:PIXI.Text = new PIXI.Text("This is an example",textStyle);
-        text.anchor.set(0.5, 0.5);
-        text.position.set(this._stageWidth * 0.5, this._stageHeight * 0.5 - 160);
-        this._foregroundLayer.addChild(text);
+        const animTextures:PIXI.Texture[] = [];
+        for (let key in resources["../media/animations/bw-intro.json"]!.textures){
+            animTextures.push(resources["../media/animations/bw-intro.json"]!.textures[key]);
+        }
 
-        let sprite:PIXI.Sprite = new PIXI.Sprite(this.getTexture("star"));
-        sprite.anchor.set(0.5, 0.5);
-        sprite.position.set(this._stageWidth * 0.5, this._stageHeight * 0.5);
-        sprite.tint = 0x0000FF;
-        this._foregroundLayer.addChild(sprite);
+        const animation = new PIXI.AnimatedSprite(animTextures);
+        animation.animationSpeed = 0.2;
+        animation.play();
+
+
+
+        const gfx = new PIXI.Graphics();
+        gfx.lineStyle(2,0x00000,1,0.5);
+        gfx.beginFill(0x00ff00,1);
+        gfx.drawPolygon([0,0,100,100,200,150,10,10]);
+        gfx.endFill();
+
+        this.stage.addChild(sprite);
+        this.stage.addChild(gfx);
+        this.stage.addChild(animation);
+
+        GSAP.to(sprite, {duration:2, x:500, y:500, yoyo:true, repeat:5});
+
+
     }
 }
